@@ -1,7 +1,8 @@
-import ProductList from './components/ProductList';
+import { Product } from "@/app/api/products/_constants";
+import ProductList from "./components/ProductList";
 
-const getProducts = async (): Promise<any> => {
-  const res = await fetch('http://localhost:3000/api/products');
+const getProducts = async (): Promise<Product[]> => {
+  const res = await fetch("http://localhost:3000/api/products");
   return res.json();
 };
 

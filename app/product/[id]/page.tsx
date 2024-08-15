@@ -1,12 +1,19 @@
-import { notFound } from 'next/navigation';
+import { Product } from "@/app/api/products/_constants";
+import { notFound } from "next/navigation";
 
-async function getProduct(id: string): Promise<any> {
-  const res = await fetch(`http://localhost:3000/api/products/${id}`);
+async function getProduct(id: string): Promise<Product | null> {
+  const res = await fetch(`http://localhost:3000/api/products/${id}`, {
+    cache: "no-cache",
+  });
   if (!res.ok) return null;
   return res.json();
 }
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
+export default async function ProductPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const product = await getProduct(params.id);
 
   if (!product) {

@@ -1,11 +1,10 @@
-import { NextResponse } from 'next/server';
+import { products } from "@/app/api/products/_constants";
+import { NextResponse } from "next/server";
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export async function GET() {
-  const products = [
-    { id: 1, name: 'Residential Proxies', price: 50 },
-    { id: 2, name: 'Data Scraping API', price: 100 },
-    { id: 3, name: 'Mobile Proxies', price: 75 },
-  ];
+  await sleep(1000);
 
   return NextResponse.json(products);
 }
